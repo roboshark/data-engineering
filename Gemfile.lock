@@ -131,6 +131,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   jquery-rails
+  rack-cache
   rails (= 3.1.0)
   sass-rails (~> 3.1.0)
   sqlite3

@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'acts_cruddy', :git => 'git@github.com:topsail/acts_cruddy.git'
 
 # Dragonfly for handling file uploads
+gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly'
 
 # To use debugger
