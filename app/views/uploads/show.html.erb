@@ -1,6 +1,8 @@
 <% if @upload.end_time.nil? %>
 
-  <p>"<%= @upload.file.name %>" is being processed.  Please wait...</p>
+  <p>"<%= @upload.file.name %>" is being processed.</p>
+  <p><%= image_tag('spinner.gif') %></p>
+  <p>Please wait...</p>
 
   <script type="text/javascript">
 
