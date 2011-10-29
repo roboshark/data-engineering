@@ -7,4 +7,28 @@ class Item < ActiveRecord::Base
   belongs_to :merchant
   has_many :purchases
 
+  # Find an existing Item by a case in-sensitive search on description, merchant_id and price, or creates a
+  # new one.
+  def self.find_or_create(attrs={})
+    
+    attrs = attrs.symbolize_keys
+
+    existing = Item.where('lower(description) = ? and merchant_id = ? and price = ?',
+                          attrs[:description].downcase,
+                          (attrs[:merchant_id] || attrs[:merchant].id),
+                         attrs[:price]).first unless attrs[:description].nil?
+
+    existing || Item.create(attrs)
+  
+  end
+
+  def price_in_dollars(price)
+   
+    if price =~ /^\d*\.\d{1,2}$/
+      dollars, cents = price.split('.')
+      price = dollars.to_i + cents.to_i
+    end
+
+  end
+
 end

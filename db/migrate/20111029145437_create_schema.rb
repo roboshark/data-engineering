@@ -47,7 +47,6 @@ class CreateSchema < ActiveRecord::Migration
       t.references :upload, :null => false
       t.string :message, :limit => 250, :null => false
       t.integer :row_number, :null => true
-      t.string :type, :limit => 15
     end
 
   end

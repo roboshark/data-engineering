@@ -2,6 +2,20 @@ require File.expand_path(File.join('..', 'test_helper'), File.dirname(__FILE__))
 
 class MerchantTest < ActiveSupport::TestCase
 
+  test "find_or_create" do
+
+    tardis_shoppe = merchants(:tardis_shoppe)
+
+    [ tardis_shoppe.name, tardis_shoppe.name.upcase, tardis_shoppe.name.downcase ].each do |name|
+      merchant = Merchant.find_or_create(:name => name, :address => 'A test address.')
+      assert_equal tardis_shoppe, merchant
+    end
+
+    merchant = Merchant.find_or_create(:name => Factory.next(:name), :address => 'A test address.')
+    assert merchant.valid?
+
+  end
+
   test "save" do
     merchant = Factory.build(:merchant)
     assert merchant.save, "merchant is invalid:  #{merchant.errors.full_messages.join('; ')}"
