@@ -18,11 +18,11 @@ end
 
 gem 'jquery-rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# basic CRUD implementation for controllers.
+gem 'acts_cruddy', :git => 'git@github.com:topsail/acts_cruddy.git'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+# Dragonfly for handling file uploads
+gem 'dragonfly'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -30,4 +30,8 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+
+  # Factory Girl for test data
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
