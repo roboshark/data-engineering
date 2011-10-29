@@ -1,0 +1,15 @@
+chameleon_circuit:
+  merchant: tardis_shoppe
+  description: Buy one chamelon circuit, get one free
+  price: 2500
+
+tardis_repair:
+  merchant: tardis_shoppe
+  description: $50 off Tardis repair
+  price: 3000
+
+books:
+  merchant: regulator
+  description: $25 dollars for $10
+  price: 1000
+

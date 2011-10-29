@@ -1,0 +1,19 @@
+doctor_chameleon_circuit:
+  purchaser: doctor
+  item: chameleon_circuit
+  count: 1
+
+doctor_tardis_repair:
+  purchaser: doctor
+  item: tardis_repair
+  count: 1
+
+amy_books:
+  purchaser: amy
+  item: books
+  count: 1
+
+rory_books:
+  purchaser: rory
+  item: books
+  count: 3
