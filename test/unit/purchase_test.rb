@@ -23,6 +23,11 @@ class PurchaseTest < ActiveSupport::TestCase
     assert_validates_nil purchase, 'item'
   end
   
+  test "upload validation" do
+    purchase = Factory.build(:purchase)
+    assert_validates_nil purchase, 'upload'
+  end
+
   test "count validation" do
     purchase = Factory.build(:purchase)
     assert_validates_blank purchase, 'count'

@@ -1,0 +1,56 @@
+<% if @upload.end_time.nil? %>
+
+  <p>"<%= @upload.file.name %>" is being processed.  Please wait...</p>
+
+  <script type="text/javascript">
+
+    // Periodically check the server to see if the file has been processed
+    $(document).ready(function() {
+      window.setInterval(function() {
+        $.ajax({
+          url: '<%= upload_url(@upload, :format => 'json') %>',
+          success: function(data) {
+            // Reload this page when the upload is finished processing.
+            if (data.end_time) {
+              window.location = '<%= upload_url(@upload) %>';
+            }
+          }
+        })
+      }, 5000);
+    });
+  </script>
+
+<% else %>
+
+  <h1>Upload Results</h1>
+
+  <h2><%= @upload.file.name %></h2>
+
+  <div class="field">
+    <label>Total Gross Revenue:</label><%= cents_to_dollars(@upload.gross_revenue) %>
+  </div>
+
+  <% unless @upload.upload_messages.empty? %>
+
+    <h3>Errors</h3>
+    
+    <table>
+      <tr>
+        <th>Row</th>
+        <th>Error</th>
+      </tr>
+      <% @upload.upload_messages.each do |upload_message| %>
+      <tr>
+        <td class="number"><%= upload_message.row_number %></td>
+        <td><%= upload_message.message %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  <% end %>
+
+<% end %>
+
+<div class="actions">
+  <%= link_to "Return to List", uploads_url %>
+</div>

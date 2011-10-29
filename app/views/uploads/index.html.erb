@@ -1,0 +1,31 @@
+<h1>Uploads</h1>
+
+<% unless @uploads.empty? %>
+<table>
+  <tr>
+    <th>File Name</th>
+    <th>Gross Revenue</th>
+    <th>Uploaded</th>
+    <th>Processed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @uploads.each do |upload| %>
+  <tr>
+    <td><%= upload.file.name %></td>
+    <td class="number"><%= cents_to_dollars(upload.gross_revenue) %></td>
+    <td><%= l(upload.created_at) %></td>
+    <td><%= upload.end_time.nil? ? 'Waiting...' : l(upload.end_time) %></td>
+    <td><%= link_to 'Original', upload.file.url %></td>
+    <td><%= link_to 'Results', upload %></td>
+    <td><%= link_to 'Delete', upload, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<div class="actions">
+<%= link_to 'New Upload', new_upload_path %>
+</div>

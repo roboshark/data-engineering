@@ -5,3 +5,45 @@
  *= require_self
  *= require_tree . 
 */
+
+div.field label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+div.actions {
+  margin-top: 15px;
+}
+
+table {
+  border: 1px solid #DDD;
+  border-collapse: collapse;
+}
+
+tr {
+  padding: 0px;
+}
+
+tr:nth-child(even) {
+  background: #FFF;
+}
+
+tr:nth-child(odd) {
+  background: #DDD;
+}
+
+th {
+  background-color: #DDD;
+}
+
+th, td {
+  margin: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid #CCC;
+  vertical-align: top;
+}
+
+td.number {
+  text-align: right;
+}

@@ -1,7 +1,7 @@
 chameleon_circuit:
   merchant: tardis_shoppe
   description: Buy one chamelon circuit, get one free
-  price: 2500
+  price: 2000
 
 tardis_repair:
   merchant: tardis_shoppe

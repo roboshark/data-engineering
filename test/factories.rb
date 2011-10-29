@@ -20,6 +20,7 @@ end
 Factory.define :purchase, :class => Purchase do |f|
   f.purchaser { Factory.create(:purchaser) }
   f.item { Factory.create(:item) }
+  f.upload { Factory.create(:upload) }
   f.count 2
 end
 

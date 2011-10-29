@@ -2,7 +2,7 @@ class Purchaser < ActiveRecord::Base
   
   validates :name, :presence => true, :length => { :maximum => 100 }
 
-  has_many :purchases
+  has_many :purchases, :order => 'purchases.created_at'
 
   # Find an existing Purchaser by a case in-sensitive search on name, or creates a
   # new one.

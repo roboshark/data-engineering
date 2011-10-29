@@ -4,7 +4,7 @@ class CreateSchema < ActiveRecord::Migration
 
     create_table :purchasers do |t|
       t.string :name, :limit => 100, :null => false
-      t.timestamps
+      t.timestamp :created_at, :null => false
     end
 
     add_index :purchasers, :name
@@ -12,7 +12,7 @@ class CreateSchema < ActiveRecord::Migration
     create_table :merchants do |t|
       t.string :name, :limit => 100, :null => false
       t.string :address, :limit => 250, :null => false
-      t.timestamps
+      t.timestamp :created_at, :null => false
     end
 
     add_index :merchants, [ :name, :address ]
@@ -21,6 +21,7 @@ class CreateSchema < ActiveRecord::Migration
       t.string :description, :limit => 200, :null => false
       t.integer :price, :null => false # stored as cents
       t.references :merchant, :null => false
+      t.timestamp :created_at, :null => false
     end
 
     add_index :items, :merchant_id
@@ -29,7 +30,9 @@ class CreateSchema < ActiveRecord::Migration
     create_table :purchases do |t|
       t.references :purchaser, :null => false
       t.references :item, :null => false
+      t.references :upload, :null => false
       t.integer :count, :null => false
+      t.timestamp :created_at, :null => false
     end
 
     add_index :purchases, :purchaser_id
@@ -47,6 +50,7 @@ class CreateSchema < ActiveRecord::Migration
       t.references :upload, :null => false
       t.string :message, :limit => 250, :null => false
       t.integer :row_number, :null => true
+      t.timestamp :created_at, :null => false
     end
 
   end

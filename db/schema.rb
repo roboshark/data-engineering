@@ -14,9 +14,10 @@
 ActiveRecord::Schema.define(:version => 20111029145437) do
 
   create_table "items", :force => true do |t|
-    t.string  "description", :limit => 200, :null => false
-    t.integer "price",                      :null => false
-    t.integer "merchant_id",                :null => false
+    t.string   "description", :limit => 200, :null => false
+    t.integer  "price",                      :null => false
+    t.integer  "merchant_id",                :null => false
+    t.datetime "created_at",                 :null => false
   end
 
   add_index "items", ["merchant_id", "description", "price"], :name => "index_items_on_merchant_id_and_description_and_price"
@@ -25,34 +26,34 @@ ActiveRecord::Schema.define(:version => 20111029145437) do
   create_table "merchants", :force => true do |t|
     t.string   "name",       :limit => 100, :null => false
     t.string   "address",    :limit => 250, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
   end
 
   add_index "merchants", ["name", "address"], :name => "index_merchants_on_name_and_address"
 
   create_table "purchasers", :force => true do |t|
     t.string   "name",       :limit => 100, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
   end
 
   add_index "purchasers", ["name"], :name => "index_purchasers_on_name"
 
   create_table "purchases", :force => true do |t|
-    t.integer "purchaser_id", :null => false
-    t.integer "item_id",      :null => false
-    t.integer "count",        :null => false
+    t.integer  "purchaser_id", :null => false
+    t.integer  "item_id",      :null => false
+    t.integer  "upload_id",    :null => false
+    t.integer  "count",        :null => false
+    t.datetime "created_at",   :null => false
   end
 
   add_index "purchases", ["item_id"], :name => "index_purchases_on_item_id"
   add_index "purchases", ["purchaser_id"], :name => "index_purchases_on_purchaser_id"
 
   create_table "upload_messages", :force => true do |t|
-    t.integer "upload_id",                 :null => false
-    t.string  "message",    :limit => 250, :null => false
-    t.integer "row_number"
-    t.string  "type",       :limit => 15
+    t.integer  "upload_id",                 :null => false
+    t.string   "message",    :limit => 250, :null => false
+    t.integer  "row_number"
+    t.datetime "created_at",                :null => false
   end
 
   create_table "uploads", :force => true do |t|

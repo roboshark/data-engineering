@@ -1,0 +1,6 @@
+upload:
+  file_name: Test Upload
+  file_uid: 12345
+  created_at: <%= Time.now-150 %>
+  start_time: <%= Time.new-100 %>
+  end_time: <%= Time.now %>

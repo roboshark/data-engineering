@@ -1,19 +1,23 @@
 doctor_chameleon_circuit:
+  upload: upload
   purchaser: doctor
   item: chameleon_circuit
   count: 1
 
 doctor_tardis_repair:
+  upload: upload
   purchaser: doctor
   item: tardis_repair
   count: 1
 
 amy_books:
+  upload: upload
   purchaser: amy
   item: books
   count: 1
 
 rory_books:
+  upload: upload
   purchaser: rory
   item: books
   count: 3

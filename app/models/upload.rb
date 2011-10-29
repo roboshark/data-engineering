@@ -14,7 +14,7 @@ class Upload < ActiveRecord::Base
     save!
 
     # Any unexpected errors should roll back the whole upload
-    #ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do
 
       row_num = 2 # first data line is after header
 
@@ -34,14 +34,14 @@ class Upload < ActiveRecord::Base
 
           if price =~ /^\d*\.\d{1,2}$/
             dollars, cents = price.split('.')
-            price = dollars.to_i + cents.to_i
+            price = (dollars.to_i * 100) + cents.to_i
           end
 
           item = Item.find_or_create(:description => row['item description'], :merchant => merchant, :price => price)
           add_error_messages(row_num, item)
 
           if item.valid?
-            purchase = Purchase.create(:item => item, :purchaser => purchaser, :count => row['purchase count'])
+            purchase = Purchase.create(:item => item, :purchaser => purchaser, :count => row['purchase count'], :upload => self)
             add_error_messages(row_num, purchase)
           end
 
@@ -57,8 +57,12 @@ class Upload < ActiveRecord::Base
       self.end_time = Time.now
       save!
 
-    #end
+    end
 
+  end
+
+  def gross_revenue
+    Upload.connection.select_value("select sum(purchases.count*items.price) from purchases join items on items.id = purchases.item_id where purchases.upload_id = #{self.id}")
   end
 
   private
