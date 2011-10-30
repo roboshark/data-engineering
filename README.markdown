@@ -1,3 +1,15 @@
+# My Implementation
+
+This implementation of the challenge was made with Rails.  The code consists of a web app and a background daemon which processes the uploads.
+Foreman is used to manage both processes.
+
+To get it running:
+
+    $ bundle install
+    $ rake db:migrate
+    $ foreman start
+ 
+----------
 # Challenge for Software Engineer - Big Data 
 To better assess a candidates development skills, we would like to provide the following challenge.  You have as much time as you'd like (though we ask that you not spend more than a few hours) and may use any programming language or framework you'd like.  Feel free to email [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com) if you have any questions.
 
