@@ -3,6 +3,7 @@ class Upload < ActiveRecord::Base
   validates :file_uid, :length => { :maximum => 200 }
   validates :file_name, :length => { :maximum => 100 }
 
+  # Any validation error messages encountered are saved with the relevant row number and can be viewed via the web app.
   has_many :upload_messages, :dependent => :destroy
 
   file_accessor :file
@@ -12,23 +13,7 @@ class Upload < ActiveRecord::Base
     where('uploads.start_time is null').order('uploads.created_at asc').first
   end
 
-  # Run as a daemon processing new uploads.  This method is executed in a separate process.
-  def self.run
-
-    while true
-
-      upload = Uplaod.next
-
-      if upload.nil?
-        sleep(5)
-      else
-        upload.process
-      end
-      
-    end
-
-  end
-
+  # Reads the uploaded file and inserts records into database
   def process
 
     # Save the start time so we know this one is in process
@@ -59,6 +44,8 @@ class Upload < ActiveRecord::Base
             price = (dollars.to_i * 100) + cents.to_i
           end
 
+          # Add the item and purchase
+
           item = Item.find_or_create(:description => row['item description'], :merchant => merchant, :price => price)
           add_error_messages(row_num, item)
 
@@ -83,6 +70,7 @@ class Upload < ActiveRecord::Base
 
   end
 
+  # Returns the gross revenue from the purchases included in this upload.
   def gross_revenue
     Upload.connection.select_value("select sum(purchases.count*items.price) from purchases join items on items.id = purchases.item_id where purchases.upload_id = #{self.id}")
   end
