@@ -9,7 +9,7 @@ To get it running:
     $ rake db:migrate
     $ foreman start
 
-The web application creates an `Upload` record for each uploaded file.  The `UploadDaemon` processes each new `Upload` in the background.
+The web application creates an [`Upload`](https://github.com/roboshark/data-engineering/blob/master/app/models/upload.rb) record for each uploaded file.  The [`UploadDaemon`](https://github.com/roboshark/data-engineering/blob/master/lib/upload_daemon.rb) processes each new `Upload` in the background.
 Any validation errors that are encountered are stored in the database and can be reviewd via the web interface.  The app calculates the
 gross revenue of each uploaded file separately.
 
