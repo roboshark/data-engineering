@@ -7,7 +7,6 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,15 +17,15 @@ end
 
 gem 'jquery-rails'
 
-# basic CRUD implementation for controllers.
+# Basic CRUD implementation for controller.
 gem 'acts_cruddy', :git => 'git@github.com:topsail/acts_cruddy.git'
 
 # Dragonfly for handling file uploads
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly'
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+# Foreman for starting web and upload daemon processes
+gem 'foreman'
 
 group :test do
   gem 'minitest', "~> 2.7.0"

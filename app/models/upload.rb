@@ -7,6 +7,28 @@ class Upload < ActiveRecord::Base
 
   file_accessor :file
 
+  # Return the next upload that needs to be processed
+  def self.next
+    where('uploads.start_time is null').order('uploads.created_at asc').first
+  end
+
+  # Run as a daemon processing new uploads.  This method is executed in a separate process.
+  def self.run
+
+    while true
+
+      upload = Uplaod.next
+
+      if upload.nil?
+        sleep(5)
+      else
+        upload.process
+      end
+      
+    end
+
+  end
+
   def process
 
     # Save the start time so we know this one is in process

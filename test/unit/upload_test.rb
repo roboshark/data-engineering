@@ -66,6 +66,28 @@ class UploadTest < ActiveSupport::TestCase
     assert_equal 9500, upload2.gross_revenue
   end
 
+  test "test next" do
+
+    assert Upload.next.nil?, "Next did not return nil the first time"
+
+    bad = Upload.new
+    bad.file = File.new(File.join(Rails.root, 'test', 'files', 'bad_input.tab'))
+    bad.save!
+
+    good = Upload.new
+    good.file = File.new(File.join(Rails.root, 'example_input.tab'))
+    good.save!
+
+    assert_equal bad, Upload.next, "Next did not return the bad upload."
+    bad.process
+
+    assert_equal good, Upload.next, "Next did not return the good upload."
+    good.process
+
+    assert Upload.next.nil?, "Next did not return nil the last time."
+
+  end
+
   test "file_uid validation" do
     upload = Factory.build(:upload)
     assert_validates_length upload, 'file_uid', 200
