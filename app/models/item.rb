@@ -22,13 +22,4 @@ class Item < ActiveRecord::Base
   
   end
 
-  def price_in_dollars(price)
-   
-    if price =~ /^\d*\.\d{1,2}$/
-      dollars, cents = price.split('.')
-      price = dollars.to_i + cents.to_i
-    end
-
-  end
-
 end
