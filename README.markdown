@@ -8,7 +8,11 @@ To get it running:
     $ bundle install
     $ rake db:migrate
     $ foreman start
- 
+
+The web application creates an `Upload` record for each uploaded file.  The `UploadDaemon` processes each new `Upload` in the background.
+Any validation errors that are encountered are stored in the database and can be reviewd via the web interface.  The app calculates the
+gross revenue of each uploaded file separately.
+
 ----------
 # Challenge for Software Engineer - Big Data 
 To better assess a candidates development skills, we would like to provide the following challenge.  You have as much time as you'd like (though we ask that you not spend more than a few hours) and may use any programming language or framework you'd like.  Feel free to email [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com) if you have any questions.
