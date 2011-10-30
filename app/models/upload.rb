@@ -54,8 +54,6 @@ class Upload < ActiveRecord::Base
             add_error_messages(row_num, purchase)
           end
 
-        else
-
         end
 
         row_num += 1
